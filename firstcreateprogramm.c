@@ -39,5 +39,3 @@ set_create_normalized_angle(0);
 	while(get_create_distance()<90){
 	}		
 }
-	
-
