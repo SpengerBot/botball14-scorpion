@@ -1,5 +1,5 @@
 #define RUN_SCRIPT create_write_byte(153) // macro to run the currently loaded script
-void make_drive_script(int dist, int speed) {
+void make_drive_script(int dist, int speed) {  //dist in mm, speed in mm/s
    create_write_byte(152);        // specifies start of script definition
    create_write_byte(13);         // specifies number of bytes to follow,(defining the script)
    create_write_byte(137);        // drive command (speed and turn radius in next 4 bytes)
