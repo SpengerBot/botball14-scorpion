@@ -1,6 +1,8 @@
 
-void turn_right();
-void turn_left();
+void turn_right(int angle);
+void turn_left(int angle);
+
+//servos
 #define cubeClaw 0
 #define botguyClaw 1
 #define leftHook 2
@@ -9,8 +11,14 @@ void turn_left();
 #define claw_opend 1111
 #define hookDown 750
 #define hookUp 1450
+
+//motoren
 #define motor 1 
 #define speed 100
+
+//
+#define line_sensor_left 0
+#define line_sensor_right 1
 
 
 void main(){
@@ -25,10 +33,18 @@ void main(){
 	printf("nach links gedreht");
 	set_create_distance(0);
 	create_drive_straight(-speed);
-	while(get_create_distance()>-500){
+	while(get_create_distance()>-600){
 	}
 	create_stop();
-	turn_left(90);
+	turn_left(70);
+	create_spin_CCW(30);
+	while(analog(line_sensor_right)<400){}
+	while(analog(line_sensor_right)>500){}
+	while(analog(line_sensor_right)<400){}
+	if(line_sensor_left>500){
+		create_spin_CW(10);
+		while(line_sensor_left<400){}
+	}
 	set_servo_position(cubeClaw,claw_opend);
 	create_drive_straight(-speed);
 	set_create_distance(0);
