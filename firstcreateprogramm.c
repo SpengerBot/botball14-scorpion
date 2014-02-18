@@ -28,14 +28,14 @@ void main(){
 
 void turn_right() {
 set_create_normalized_angle(0);
-	create_spin_CCW(100);
+	create_spin_CW(100);
 	while(get_create_distance()<90){
 	}		
 }
 
 void turn_left() {
 set_create_normalized_angle(0);
-	create_spin_CW(100);
+	create_spin_CCW(100);
 	while(get_create_distance()<90){
 	}		
 }
