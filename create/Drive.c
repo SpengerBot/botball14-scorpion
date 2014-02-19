@@ -1,7 +1,3 @@
-int main() {
-	return 1;
-}
-
 #define RUN_SCRIPT create_write_byte(153) // macro to run the currently loaded script
 void make_drive_script(int dist, int speed) {  //dist in mm, speed in mm/s
 	create_write_byte(152);        // specifies start of script definition
@@ -22,7 +18,7 @@ void make_drive_script(int dist, int speed) {  //dist in mm, speed in mm/s
 	// end of script (13 bytes)
 }
 
-void drive(int dist, int speed) {  //dist in mm, speed in mm/s
+void drive_old(int dist, int speed) {  //dist in mm, speed in mm/s
 	create_write_byte(152);        // specifies start of script definition
 	create_write_byte(13);         // specifies number of bytes to follow,(defining the script)
 	create_write_byte(137);        // drive command (speed and turn radius in next 4 bytes)
@@ -59,7 +55,6 @@ void drive(int dist, int speed) {  //dist in mm, speed in mm/s   invertiert fuer
 	create_write_byte(0);          // send high byte (0 speed)
 	create_write_byte(0);          // send low byte (0 speed)
 	create_write_byte(0);          // null turn radius
-	create_write_byte(0);          // null turn radius
-	// end of script (13 bytes)
+	create_write_byte(0);          // null turn radius // end of script (13 bytes)
 	create_write_byte(153);        //start script
 }
