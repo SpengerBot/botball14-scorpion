@@ -25,8 +25,8 @@ void main() {
 	create_connect();
 	create_full();
 	printf("start");
-	rotate_wait(rotate_speed,65);
-	printf("\n jetzt nach hinten");
+	rotate_wait(rotate_speed,90);
+	printf("\njetzt nach hinten");
 	drive_wait(-100,-20);
 	printf("jetzt nach vorne");
 	drive_wait(speed, 500);
@@ -36,4 +36,5 @@ void main() {
 	drive_wait(-speed, -200);
 	set_servo_position(cubeClaw,claw_closed);
 	printf("done");
+	create_disconnect();
 }
