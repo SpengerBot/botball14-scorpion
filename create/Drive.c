@@ -1,4 +1,7 @@
-void drive(int dist, int speed) {  //dist in mm, speed in mm/s   invertiert fuer create roboter
+void drive(int speed, int dist) {  //dist in mm, speed in mm/s   invertiert fuer create roboter
+	if(speed*dist<0) {
+		printf("\nSpeed & Distance must be positive or negative!\n");
+	}
 	create_write_byte(152);        // specifies start of script definition
 	create_write_byte(13);         // specifies number of bytes to follow,(defining the script)
 	create_write_byte(137);        // drive command (speed and turn radius in next 4 bytes)
@@ -17,9 +20,11 @@ void drive(int dist, int speed) {  //dist in mm, speed in mm/s   invertiert fuer
 	create_write_byte(153);        //start script
 }
 
-void drive_wait(int dist, int speed) {  //dist in mm, speed in mm/s   invertiert fuer create roboter
-	drive(dist, speed);
-	msleep(dist/speed*1000);
+void drive_wait(int speed, int dist) {  //dist in mm, speed in mm/s   invertiert fuer create roboter
+	drive(speed, dist);
+	double d = dist;
+	double s = speed;
+	msleep((int)(d/s*1000.0));
 }
 
 void rotate(int speed, int angle) {  //angle: positiv --> rechts     negativ --> links
@@ -48,5 +53,10 @@ void rotate(int speed, int angle) {  //angle: positiv --> rechts     negativ -->
 
 void rotate_wait(int speed, int angle) {
 	rotate(speed, angle);
-	msleep(2268.9280275*angle/speed); //d*pi*angle/360		(d=260mm durchmesser rad zu rad) (260*pi/360=2,2689280275926284500007979990352 *1000=2268,9280275926284500007979990352 (genauigkeit 11 Stellen))
+	if(angle*speed < 0) {
+		angle = angle * -1;
+	}
+	double a = angle;
+	double s = speed;
+	msleep((int)(2268.9280275*a/s)); //d*pi*angle/360		(d=260mm durchmesser rad zu rad) (260*pi/360=2,2689280275926284500007979990352 *1000=2268,9280275926284500007979990352 (Genauigkeit 11 Stellen))
 }
