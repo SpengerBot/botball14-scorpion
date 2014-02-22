@@ -1,7 +1,3 @@
-
-void turn_right(int angle);
-void turn_left(int angle);
-
 //servos
 #define cubeClaw 0
 #define botguyClaw 1
@@ -11,61 +7,52 @@ void turn_left(int angle);
 #define claw_opend 1111
 #define hookDown 750
 #define hookUp 1450
+#define botguyClawUp 2000
+#define botguyClawDown 950
 
 //motoren
 #define motor 1 
 #define speed 500
+#define rotate_speed 250
 
 //
 #define line_sensor_left 0
 #define line_sensor_right 1
 
-
-void main(){
-	enable_servos();
+void main() {
 	set_servo_position(leftHook, hookDown);
 	set_servo_position(rightHook, hookDown);
 	set_servo_position(cubeClaw,claw_closed);
+	set_servo_position(botguyClaw,botguyClawUp);
+	enable_servos();
 	create_connect();
 	create_full();
+	printf("Initial Setup");
+	rotate_wait(rotate_speed,-90);
+	printf("wait_for_light();");//wait_for_light();
+	msleep(2000);
 	printf("start");
-	turn_right(70);
-	printf("\n jeztz nach hinten");
-	create_stop();msleep(100);
-	set_create_distance(20);
-	create_drive_straight(-100);
-	while(get_create_distance()>=0){
-	}
-	create_stop();msleep(100);
+	rotate_wait(rotate_speed,90);
+	printf("\njetzt nach hinten");
+	drive_wait(-20,-50);
 	printf("jetzt nach vorne");
-	set_create_distance(0);
-	create_drive_straight(speed);
-	while(get_create_distance()<500){
-	}
-	create_stop();msleep(100);
-	printf("jeztz nach links");
-	turn_right(65);
+	drive_wait(speed, 540);
+	printf("jetzt nach links");
+	rotate_wait(rotate_speed,85);
 	set_servo_position(cubeClaw,claw_opend);
-	create_drive_straight(-speed);
-	set_create_distance(0);
-	while(get_create_distance()>-200){
-	}
-	create_stop();msleep(100);
+	drive_wait(-speed, -200);
 	set_servo_position(cubeClaw,claw_closed);
+	printf("I have got the cube!\n");
+	drive_wait(-speed, -100);
+	rotate_wait(rotate_speed,85);
+	drive_wait(speed, 100);
+	set_servo_position(botguyClaw,botguyClawDown);
+	drive_wait(-speed, -70);
+	drive_wait(-20,-120);
+	msleep(400);
+    set_servo_position(botguyClaw,botguyClawUp);
+	//drive_wait(speed, 100);
+	//rotate_wait(rotate_speed,180);
 	printf("done");
-	
-}
-
-void turn_right(int angle) {
-	set_create_normalized_angle(359);
-	create_spin_CW(250);
-	while(get_create_normalized_angle()>360-angle){
-	}		
-}
-
-void turn_left(int angle) {
-set_create_normalized_angle(0);
-	create_spin_CCW(250);
-	while(get_create_normalized_angle()<angle-10){
-	}		
+	create_disconnect();
 }
