@@ -7,7 +7,7 @@
 #define hookUp_old 1450
 #define hookUp 1650 // Created on Wed February 19 2014
 
-int main()
+void old_main()
 {
 	enable_servos();
 	printf("start");

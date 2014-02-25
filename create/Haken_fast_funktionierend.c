@@ -6,7 +6,7 @@
 #define hookDown 750
 #define hookUp 1450// Created on Wed February 19 2014
 
-int main()
+void old_main2()
 {
 	enable_servos();
 	printf("start");

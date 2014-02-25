@@ -1,3 +1,11 @@
+void stop() {
+	create_write_byte(137);        // stop move by changing speed and radius to 0
+	create_write_byte(0);          // send high byte (0 speed)
+	create_write_byte(0);          // send low byte (0 speed)
+	create_write_byte(0);          // null turn radius
+	create_write_byte(0);          // null turn radius // end of script (13 bytes)
+}
+
 void drive(int speed, int dist) {  //dist in mm, speed in mm/s   invertiert fuer create roboter
 	if(speed*dist<0) {
 		printf("\nSpeed & Distance must be positive or negative!\n");
@@ -53,10 +61,4 @@ void rotate_wait(int speed, int angle) {
 	msleep((int)(2268.9280275*a/s)); //d*pi*angle/360		(d=260mm durchmesser rad zu rad) (260*pi/360=2,2689280275 *1000=2268,9280275 (Genauigkeit 11 Stellen)
 }
 
-void stop() {
-	create_write_byte(137);        // stop move by changing speed and radius to 0
-	create_write_byte(0);          // send high byte (0 speed)
-	create_write_byte(0);          // send low byte (0 speed)
-	create_write_byte(0);          // null turn radius
-	create_write_byte(0);          // null turn radius // end of script (13 bytes)
-}
+

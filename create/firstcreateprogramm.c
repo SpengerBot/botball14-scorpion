@@ -1,14 +1,18 @@
+
+void closeClaw();
+void openClaw();
 //servos
 #define cubeClaw 0
-#define botguyClaw 1
+#define botguyClawLifter 0
+#define botguyClaw 2
+#define botguyClawOpen 500
+#define botguyClawClosed 1500
 #define leftHook 2
 #define rightHook 3
-#define claw_closed 1860
-#define claw_opend 1111
 #define hookDown 750
 #define hookUp 1450
-#define botguyClawUp 2000
-#define botguyClawDown 950
+#define botguyClawLifterUp 2000
+#define botguyClawLifterDown 1150
 
 //motoren
 #define motor 1 
@@ -22,8 +26,9 @@
 void main() {
 	set_servo_position(leftHook, hookDown);
 	set_servo_position(rightHook, hookDown);
-	set_servo_position(cubeClaw,claw_closed);
-	set_servo_position(botguyClaw,botguyClawUp);
+	closeClaw();
+	set_servo_position(botguyClawLifter,botguyClawLifterUp);
+	set_servo_position(botguyClaw,botguyClawClosed);
 	enable_servos();
 	create_connect();
 	create_full();
@@ -39,20 +44,41 @@ void main() {
 	drive_wait(speed, 540);
 	printf("jetzt nach links");
 	rotate_wait(rotate_speed,85);
-	set_servo_position(cubeClaw,claw_opend);
+	openClaw();
 	drive_wait(-speed, -200);
-	set_servo_position(cubeClaw,claw_closed);
+	closeClaw();
 	printf("I have got the cube!\n");
 	drive_wait(-speed, -100);
 	rotate_wait(rotate_speed,85);
 	drive_wait(speed, 100);
-	set_servo_position(botguyClaw,botguyClawDown);
-	drive_wait(-speed, -70);
-	drive_wait(-20,-120);
+	set_servo_position(botguyClawLifter,botguyClawLifterDown);
+	set_servo_position(botguyClaw,botguyClawOpen);
+	drive_wait(-speed, -130);
+	drive_wait(-60,-60);
 	msleep(400);
-    set_servo_position(botguyClaw,botguyClawUp);
+	set_servo_position(botguyClaw,botguyClawClosed);
+	msleep(300);
+    set_servo_position(botguyClawLifter,botguyClawLifterUp);
 	//drive_wait(speed, 100);
 	//rotate_wait(rotate_speed,180);
 	printf("done");
+	msleep(1000);
 	create_disconnect();
+
+}
+void closeClaw(){
+	motor(cubeClaw,10);
+	printf("\nzu");
+	msleep(300);
+	printf("\nwartZu");
+	off(cubeClaw);
+}
+void openClaw(){
+	motor(cubeClaw,-80);
+	msleep(300);
+	motor(cubeClaw,-30);
+	printf("\nauf");
+	msleep(450);
+	printf("\nwartAuf");
+	off(cubeClaw);
 }
