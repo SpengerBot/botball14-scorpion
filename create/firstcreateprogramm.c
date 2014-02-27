@@ -5,17 +5,19 @@ void openClaw();
 #define cubeClaw 0
 #define botguyClawLifter 0
 #define botguyClaw 2
-#define botguyClawOpen 500
+#define botguyClawOpen 660
 #define botguyClawClosed 1500
-#define leftHook 2
-#define rightHook 3
+#define botguyClawLifterUp 1380
+#define botguyClawLifterDown 170
+//hooks
+#define leftHook 3
+#define rightHook 1
 #define hookDown 750
-#define hookUp 1450
-#define botguyClawLifterUp 2000
-#define botguyClawLifterDown 1150
+#define hookUp_old 1450
+#define hookUp 1650
 
 //motoren
-#define motor 1 
+#define motor1 1 
 #define speed 500
 #define rotate_speed 250
 
@@ -26,7 +28,6 @@ void openClaw();
 void main() {
 	set_servo_position(leftHook, hookDown);
 	set_servo_position(rightHook, hookDown);
-	closeClaw();
 	set_servo_position(botguyClawLifter,botguyClawLifterUp);
 	set_servo_position(botguyClaw,botguyClawClosed);
 	enable_servos();
@@ -37,30 +38,33 @@ void main() {
 	printf("wait_for_light();");//wait_for_light();
 	msleep(2000);
 	printf("start");
-	rotate_wait(rotate_speed,90);
+	rotate_wait(rotate_speed,80);
 	printf("\njetzt nach hinten");
-	drive_wait(-20,-50);
+	drive_wait(-speed/2,-20);
 	printf("jetzt nach vorne");
 	drive_wait(speed, 540);
 	printf("jetzt nach links");
 	rotate_wait(rotate_speed,85);
 	openClaw();
 	drive_wait(-speed, -200);
+	msleep(200);
 	closeClaw();
 	printf("I have got the cube!\n");
 	drive_wait(-speed, -100);
-	rotate_wait(rotate_speed,85);
+	printf("nach rechts\n");
+	rotate_wait(rotate_speed,80);
+	printf("Botguy holen\n");
 	drive_wait(speed, 100);
 	set_servo_position(botguyClawLifter,botguyClawLifterDown);
 	set_servo_position(botguyClaw,botguyClawOpen);
-	drive_wait(-speed, -130);
-	drive_wait(-60,-60);
+	drive_wait(-speed, -110);
 	msleep(400);
-	set_servo_position(botguyClaw,botguyClawClosed);
-	msleep(300);
+	set_servo_position(botguyClaw,botguyClawClosed+0);
+	printf("I have got the BUTTGAY!\n"); 
+	msleep(700);
     set_servo_position(botguyClawLifter,botguyClawLifterUp);
-	//drive_wait(speed, 100);
-	//rotate_wait(rotate_speed,180);
+	rotate_wait(rotate_speed,185);
+		drive_wait(speed, 70);
 	printf("done");
 	msleep(1000);
 	create_disconnect();

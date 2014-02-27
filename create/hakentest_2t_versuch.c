@@ -16,13 +16,6 @@ void old_main()
 	msleep(1000);
 		printf("\n down");
 	int servo_pos=hookDown;
-	//while(servo_pos>hookUp){
-	//	set_servo_position(leftHook, servo_pos);
-	//	set_servo_position(rightHook, servo_pos);
-	//	servo_pos+=100;
-	//	msleep(20);
-	//	printf("\n more up");
-	//}
 	set_servo_position(leftHook, hookUp);
 	set_servo_position(rightHook, hookUp);
 	msleep(2000);
