@@ -2,10 +2,7 @@ void botguy_up();
 void botguy_down();
 
 //servos
-#define cubeClaw 0
 #define botguyClaw 2
-#define cubeClawOpen 1000
-#define cubeClawClosed 1900
 #define botguyClawOpen 660
 #define botguyClawClosed 1500
 //hooks
@@ -26,7 +23,6 @@ void botguy_down();
 void main() {
 	//set_servo_position(leftHook, hookDown);
 	//set_servo_position(rightHook, hookDown);
-	set_servo_position(cubeClaw,cubeClawClosed);
 	set_servo_position(botguyClaw,botguyClawClosed);
 	enable_servos();
 	create_connect();
@@ -44,10 +40,9 @@ void main() {
 	drive_wait(speed, 540);
 	printf("jetzt nach links\n");
 	rotate_wait(rotate_speed,85);
-	set_servo_position(cubeClaw,cubeClawOpen);
 	drive_wait(-speed, -200);
 	msleep(200);
-	set_servo_position(cubeClaw,cubeClawClosed);
+	botguy_down();
 	printf("I have got the cube!\n");
 	drive_wait(-speed, -100);
 	printf("nach rechts\n");
@@ -55,13 +50,11 @@ void main() {
 	printf("Botguy holen\n");
 	drive_wait(speed, 100);
 	set_servo_position(botguyClaw,botguyClawOpen);
-	botguy_down();
 	drive_wait(-speed, -110);
 	msleep(400);
 	set_servo_position(botguyClaw,botguyClawClosed+0);
-	printf("I have got the BUTTGAY!\n"); 
+	printf("I have got the BotGuy!\n"); 
 	msleep(700);
-	botguy_up();
 	rotate_wait(rotate_speed,185);
 	drive_wait(speed, 70);
 	printf("done");
