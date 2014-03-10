@@ -43,18 +43,26 @@ void main() {
 	drive_wait(-speed, -200);
 	msleep(200);
 	botguy_down();
-	printf("I have got the cube!\n");
 	drive_wait(-speed, -100);
-	printf("nach rechts\n");
-	rotate_wait(rotate_speed,80);
+	printf("I have got the cube!\n");
+	//leicht links 45°
+	//vor 15cm
+	//rechts 50°
+	rotate_wait(rotate_speed,-45);
+	drive_wait(speed,15);
+	rotate_wait(rotate_speed,140);
+	
+	
 	printf("Botguy holen\n");
 	drive_wait(speed, 100);
 	set_servo_position(botguyClaw,botguyClawOpen);
+	
 	drive_wait(-speed, -110);
 	msleep(400);
 	set_servo_position(botguyClaw,botguyClawClosed+0);
 	printf("I have got the BotGuy!\n"); 
 	msleep(700);
+	drive_wait(speed, 50);
 	rotate_wait(rotate_speed,185);
 	drive_wait(speed, 70);
 	printf("done");
