@@ -29,42 +29,42 @@ void main() {
 	create_full();
 	printf("CREATE Connected :)\n");
 	botguy_up();
-	rotate_wait(rotate_speed,-90);
+	create_spin_angle_wait(rotate_speed,-90);
 	printf("wait_for_light();\n");//wait_for_light();
 	msleep(2000);
 	printf("start\n");
-	rotate_wait(rotate_speed,80);
+	create_spin_angle_wait(rotate_speed,80);
 	printf("jetzt nach hinten\n");
-	drive_wait(-speed/2,-20);
+	create_drive_distance_wait(-speed/2,-20);
 	printf("jetzt nach vorne\n");
-	drive_wait(speed, 540);
+	create_drive_distance_wait(speed, 540);
 	printf("jetzt nach links\n");
-	rotate_wait(rotate_speed,85);
-	drive_wait(-speed, -200);
+	create_spin_angle_wait(rotate_speed,85);
+	create_drive_distance_wait(-speed, -200);
 	msleep(200);
 	botguy_down();
-	drive_wait(-speed, -100);
+	create_drive_distance_wait(-speed, -100);
 	printf("I have got the cube!\n");
 	//leicht links 45°
 	//vor 15cm
 	//rechts 50°
-	rotate_wait(rotate_speed,-45);
-	drive_wait(speed,15);
-	rotate_wait(rotate_speed,140);
+	create_spin_angle_wait(rotate_speed,-45);
+	create_drive_distance_wait(speed,15);
+	create_spin_angle_wait(rotate_speed,140);
 	
 	
 	printf("Botguy holen\n");
-	drive_wait(speed, 100);
+	create_drive_distance_wait(speed, 100);
 	set_servo_position(botguyClaw,botguyClawOpen);
 	
-	drive_wait(-speed, -110);
+	create_drive_distance_wait(-speed, -110);
 	msleep(400);
 	set_servo_position(botguyClaw,botguyClawClosed+0);
 	printf("I have got the BotGuy!\n"); 
 	msleep(700);
-	drive_wait(speed, 50);
-	rotate_wait(rotate_speed,185);
-	drive_wait(speed, 70);
+	create_drive_distance_wait(speed, 50);
+	create_spin_angle_wait(rotate_speed,185);
+	create_drive_distance_wait(speed, 70);
 	printf("done");
 	msleep(1000);
 	create_disconnect();

@@ -17,7 +17,7 @@ void stop() {
 *   - speed: The Speed in mm/s
 *   - dist: The Distance in mm the Create should driv
 */
-void drive(int speed, int dist) {
+void create_drive_distance(int speed, int dist) {
 	if(speed*dist<0) {
 		printf("\nSpeed & Distance must be positive or negative!\nDistance will be corrected!\n");
 		dist = dist*-1;
@@ -44,7 +44,7 @@ void drive(int speed, int dist) {
 *   - speed: The Speed in mm/s
 *   - dist: The Distance in mm the Create should driv
 */
-void drive_wait(int speed, int dist) {  //dist in mm, speed in mm/s   invertiert fuer create roboter
+void create_drive_distance_wait(int speed, int dist) {  //dist in mm, speed in mm/s   invertiert fuer create roboter
 	drive(speed, dist);
 	double d = dist;
 	double s = speed;
@@ -60,7 +60,7 @@ void drive_wait(int speed, int dist) {  //dist in mm, speed in mm/s   invertiert
 *       - positive Value means turning right
 *       - negative Value means turning left
 */
-void rotate(int speed, int angle) {
+void create_spin_angle(int speed, int angle) {
 	int rad = 0xFFFF;			   //Maximum Radius means turning left
 	angle = angle * -1;			   //Correction of the angle
 	if(angle>0) {
@@ -90,7 +90,7 @@ void rotate(int speed, int angle) {
 *       - positive Value means turning right
 *       - negative Value means turning left
 */
-void rotate_wait(int speed, int angle) {
+void create_spin_angle_wait(int speed, int angle) {
 	rotate(speed, angle);
 	if(angle*speed < 0) {			 //Correction of the angle
 		angle = angle * -1;
