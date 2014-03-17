@@ -1,4 +1,4 @@
-/*
+/**
 * Author: Alexander Halbarth
 * Function: Sends Stop command to the Create.
 */
@@ -10,7 +10,7 @@ void stop() {
 	create_write_byte(0);          // null turn radius
 }
 
-/*
+/**
 * Author: Alexander Halbarth
 * Function: Let the Create drive withe the given speed for a specific Distance
 * Arguments:
@@ -36,7 +36,7 @@ void create_drive_distance(int speed, int dist) {
 	create_write_byte(153);        //start script
 }
 
-/*
+/**
 * Author: Alexander Halbarth
 * Function: Let the Create drive withe the given speed for a specific Distance
 *     The Method returns after the Create finished driving.
@@ -51,7 +51,7 @@ void create_drive_distance_wait(int speed, int dist) {  //dist in mm, speed in m
 	msleep((int)(d/s*1000.0));		//calculate the estimated duration
 }
 
-/*
+/**
 * Author: Alexander Halbarth
 * Function: Let the Create rotate to the specific angle.
 * Arguments:
@@ -80,7 +80,7 @@ void create_spin_angle(int speed, int angle) {
 	create_write_byte(153);        //start script
 }
 
-/*
+/**
 * Author: Alexander Halbarth
 * Function: Let the Create rotate to the specific angle.
 *     The Method returns after the Create finished driving.
