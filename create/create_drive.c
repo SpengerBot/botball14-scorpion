@@ -45,7 +45,7 @@ void create_drive_distance(int speed, int dist) {
 *   - dist: The Distance in mm the Create should driv
 */
 void create_drive_distance_wait(int speed, int dist) {  //dist in mm, speed in mm/s   invertiert fuer create roboter
-	drive(speed, dist);
+	create_drive_distance(speed, dist);
 	double d = dist;
 	double s = speed;
 	msleep((int)(d/s*1000.0));		//calculate the estimated duration
@@ -91,7 +91,7 @@ void create_spin_angle(int speed, int angle) {
 *       - negative Value means turning left
 */
 void create_spin_angle_wait(int speed, int angle) {
-	rotate(speed, angle);
+	create_spin_angle(speed, angle);
 	if(angle*speed < 0) {			 //Correction of the angle
 		angle = angle * -1;
 	}

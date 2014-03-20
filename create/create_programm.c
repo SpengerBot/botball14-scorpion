@@ -12,7 +12,7 @@ void botguy_down();
 #define hookUp_old 1450
 #define hookUp 1650
 
-//motoren
+//motors
 #define botguyMotor 0
 #define speed 500
 #define rotate_speed 250
@@ -45,16 +45,13 @@ void main() {
 	botguy_down();
 	create_drive_distance_wait(-speed, -100);
 	printf("I have got the cube!\n");
-	//leicht links 45°
-	//vor 15cm
-	//rechts 50°
-	create_spin_angle_wait(rotate_speed,-45);
-	create_drive_distance_wait(speed,15);
-	create_spin_angle_wait(rotate_speed,140);
+	create_spin_angle_wait(rotate_speed,45);
+	create_drive_distance_wait(speed,100);
+	create_spin_angle_wait(rotate_speed,30);
 	
 	
 	printf("Botguy holen\n");
-	create_drive_distance_wait(speed, 100);
+	//create_drive_distance_wait(speed, 100);
 	set_servo_position(botguyClaw,botguyClawOpen);
 	
 	create_drive_distance_wait(-speed, -110);
