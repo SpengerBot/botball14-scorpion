@@ -47,17 +47,17 @@ void main() {
 	printf("I have got the cube!\n");
 	create_spin_angle_wait(rotate_speed,45);
 	create_drive_distance_wait(speed,100);
-	create_spin_angle_wait(rotate_speed,18);
+	create_spin_angle_wait(rotate_speed,15);
 	printf("Botguy holen\n");
 	set_servo_position(botguyClaw,botguyClawOpen);
 	
 	
-	create_drive_distance_wait(-speed, -205);
+	create_drive_distance_wait(-speed, -100);
 	msleep(400);
 	set_servo_position(botguyClaw,botguyClawClosed+0);
 	printf("I have got the BotGuy!\n"); 
 	msleep(700);
-	create_drive_distance_wait(speed, 100);
+	create_drive_distance_wait(speed, 200);
 	create_spin_angle_wait(rotate_speed,185);
 	create_drive_distance_wait(speed, 70);
 	printf("done");
