@@ -1,3 +1,10 @@
+void left_claw_open();
+void left_claw_close();
+void right_claw_open();
+void right_claw_close();
+void up();
+void down();
+
 //servos
 #define clawRight 1
 #define clawLeft 0
@@ -11,9 +18,10 @@
 #define rightMotor 
 #define upMotor 0
 #define upMotorSpeed 20
+#define upMotorPosition 1500 //needs to be changed!!
 
 //sensors
-#define downSensor 
+#define downSensor 14
 int left_claw_state;
 int right_claw_state;
 
@@ -41,7 +49,6 @@ void main() {
 			msleep(500);
 		}
 	}
-	stop();
 }
 
 void left_claw_open() {
