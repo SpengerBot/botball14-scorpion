@@ -5,12 +5,6 @@ void botguy_down();
 #define botguyClaw 2
 #define botguyClawOpen 660
 #define botguyClawClosed 1500
-//hooks
-#define leftHook 3
-#define rightHook 1
-#define hookDown 750
-#define hookUp_old 1450
-#define hookUp 1650
 
 //motors
 #define botguyMotor 0
@@ -18,11 +12,9 @@ void botguy_down();
 #define rotate_speed 250
 
 //sensors
-#define BotguyClawIsUp 14
+#define botguyClawIsUp 14
 
 void main() {
-	//set_servo_position(leftHook, hookDown);
-	//set_servo_position(rightHook, hookDown);
 	set_servo_position(botguyClaw,botguyClawClosed);
 	enable_servos();
 	create_connect();
@@ -68,7 +60,7 @@ void main() {
 
 void botguy_up() {
 	motor(botguyMotor,100);
-	while(!digital(BotguyClawIsUp)){}
+	while(!digital(botguyClawIsUp)){}
 	motor(botguyMotor,0);
 }
 
