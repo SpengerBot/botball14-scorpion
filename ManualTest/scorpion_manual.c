@@ -12,10 +12,8 @@ void tail_drive();
 #define tailServoRightUp 0
 #define tailServoLeftDown 200
 #define tailServoRightDown 1800
-
 #define tailServoLeftDownMid 1200
 #define tailServoRightDownMid 800
-
 #define tailServoSlow 20
 #define tailServoFast 40
 #define tailServoLeftLoad 1000
@@ -49,10 +47,7 @@ void main() {
 	set_a_button_text("Tail Down");
 	set_b_button_text("Tail UP");
 	//botguy_up();
-	
-	
 	while(!side_button()) {
-		
 		if(a_button()) {
 			tail_down();
 			msleep(500);
@@ -67,14 +62,12 @@ void main() {
 }
 
 void botguy_up() {
-	set_b_button_text("Botguy Down");
 	motor(botguyMotor,75);
 	while(!digital(botguyClawIsUp)){}
 	motor(botguyMotor,0);
 }
 
 void botguy_down() {
-	set_b_button_text("Botguy Up");
 	motor(botguyMotor,-40);
 	msleep(700);
 	motor(botguyMotor,10);
@@ -104,7 +97,6 @@ void tail_down() {
 }
 
 void tail_up() {
-	set_a_button_text("Tail Down");
 	motor(tailMotor, tailMotorUpSpeed);
 	msleep(500);
 	set_servo_position(tailServoLeft, tailServoLeftUp);
