@@ -100,8 +100,8 @@ void botguy_up() {
 
 void botguy_down() {
 	motor(botguyMotor,-40);
-	msleep(700);
-	motor(botguyMotor,10);
+	msleep(750);
+	motor(botguyMotor,0);
 }
 
 void tail_load() {
@@ -115,9 +115,9 @@ void tail_load() {
 void tail_drive(){
 	set_servo_position(tailServoLeft, tailServoLeftDrive);
 	set_servo_position(tailServoRight, tailServoRightDrive);
+	msleep(300);
 }
 void tail_down() {
-	set_a_button_text("Tail Up");
 	motor(tailMotor, tailMotorDownSpeed);
 	while(!digital(tailDownSensor)) {}
 	freeze(tailMotor);
@@ -140,22 +140,20 @@ void tail_down() {
 }
 
 void tail_up() {
-	set_a_button_text("Tail Down");
 	motor(tailMotor, tailMotorUpSpeed);
 	msleep(500);
 	set_servo_position(tailServoLeft, tailServoLeftUp);
 	set_servo_position(tailServoRight, tailServoRightUp);
 	msleep(600);
 	freeze(tailMotor);
-	//drive
-	create_drive_distance_wait(-100,-250);
+	create_drive_distance_wait(-100,-250); //drive
 }
 
 void tail_botguy(){
 	motor(tailMotor, tailMotorUpSpeed);
 	msleep(500);
-	set_servo_position(tailServoLeft, tailServoLeftDrive);
-	set_servo_position(tailServoRight, tailServoRightDrive);
+	set_servo_position(tailServoLeft, tailServoLeftBotguy);
+	set_servo_position(tailServoRight, tailServoRightBotguy);
 	msleep(600);
 	freeze(tailMotor);
 }
