@@ -43,7 +43,6 @@ void main() {
 	create_connect();
 	create_full();
 	set_c_button_text("Tail Load");
-	tail_load();
 	set_a_button_text("Tail Down");
 	set_b_button_text("Tail UP");
 	//botguy_up();
