@@ -5,26 +5,30 @@ void botguy_slow_up();
 void tail_drive();
 void tail_down();
 void tail_botguy();
+void tail_drive_slow_down();
+void tail_up();
+
 //servos
-#define tailServoLeft 1
-#define tailServoRight 0
-#define tailServoLeftUp 2000
-#define tailServoRightUp 0
-#define tailServoLeftDown 200
-#define tailServoRightDown 1800
-
-#define tailServoLeftDownMid 1200
-#define tailServoRightDownMid 800
-
+#define tailServoLeft 1 		//moving up = higher values
+#define tailServoRight 0		//moving up = lower values
 #define tailServoSlow 20
 #define tailServoFast 40
-#define tailServoLeftLoad 1000
-#define tailServoRightLoad 1000
-#define tailServoLeftDrive 700
-#define tailServoRightDrive 1200
 #define botguyClaw 2
 #define botguyClawOpen 660
 #define botguyClawClosed 1500
+//tail positions
+#define tailServoLeftUp 2000	//highest position
+#define tailServoRightUp 0
+#define tailServoLeftDown 200	//down position for starting
+#define tailServoRightDown 1800
+#define tailServoLeftDownMid 1200	//mid position for moving down
+#define tailServoRightDownMid 800
+#define tailServoLeftBotguy 1000	//position to not loose while getting botguy
+#define tailServoRightBotguy 1000	//>DRIVE      (UNSAFE DRIVING!)
+#define tailServoLeftLoad 1000		//load position for setup
+#define tailServoRightLoad 1000
+#define tailServoLeftDrive 700		//position for save driving
+#define tailServoRightDrive 1300
 
 //motors
 #define botguyMotor 0
@@ -33,7 +37,7 @@ void tail_botguy();
 #define tailMotor 1
 #define tailMotorUpSpeed 40
 #define tailMotorDownSpeed -1
-#define tailMotorLoadSpeed 50
+#define tailMotorLoadSpeed 55
 
 //sensors
 #define botguyClawIsUp 14
