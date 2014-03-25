@@ -76,13 +76,13 @@ void main() {
 	botguy_down();
 	create_drive_distance_wait(-speed, -100);
 	printf("I have got the cube!\n");
-	create_spin_angle_wait(rotate_speed,45);
+	create_spin_angle_wait(rotate_speed,40);
 	tail_botguy();
 	create_drive_distance_wait(speed,100);
-	create_spin_angle_wait(rotate_speed,20);
+	create_spin_angle_wait(rotate_speed,25);
 	printf("Botguy holen\n");
 	set_servo_position(botguyClaw,botguyClawOpen);
-	create_drive_distance_wait(-speed, -100);
+	create_drive_distance_wait(-speed, -93);
 	msleep(400);
 	set_servo_position(botguyClaw,botguyClawClosed);
 	printf("I have got the BotGuy!\n"); 
@@ -91,14 +91,16 @@ void main() {
 	//tail_drive_slow_down();
 	create_spin_angle_wait(rotate_speed,-90);
 	msleep(1000);
-	create_drive_distance_wait(-speed,-100);
+	create_drive_distance_wait(-speed,-170);
 	msleep(1000);
-	create_spin_angle_wait(rotate_speed,-70);
+	create_spin_angle_wait(rotate_speed,-75);
+	//create_spin_angle_wait(rotate_speed,-80);
 	msleep(1000);
 	create_drive_distance_wait(speed,200);
 	tail_up();
 	printf("Hooks are up\n");
-	
+	msleep(1000); //löschen
+	set_servo_position(botguyClaw,botguyClawOpen);//löschen
 	printf("done\n");
 	create_disconnect();
 }
@@ -112,12 +114,12 @@ void botguy_up() {
 
 void botguy_down() {
 	motor(botguyMotor,-40);
-	msleep(750);
+	msleep(720);
 	motor(botguyMotor,0);
 }
 
 void tail_load() {
-	motor(tailMotor, tailMotorLoadSpeed);
+	motor(tailMotor, tailMotorLoadSpeed+5);
 	msleep(500);
 	set_servo_position(tailServoLeft, tailServoLeftLoad);
 	set_servo_position(tailServoRight, tailServoRightLoad);
