@@ -53,14 +53,16 @@ void main() {
 	tail_load();
 	botguy_up();
 	create_spin_angle_wait(rotate_speed,-90);
-	set_c_button_text("tail Loaded");
+	set_c_button_text("Tail Loaded");
 	while(!c_button()){}
 	botguy_down();
 	tail_down();
 	printf("wait_for_light();\n");//wait_for_light();
+	set_a_button_text("I'm the light!");
+	while(!a_button()){}
+	printf("Light is on!!!");
 	msleep(2000);
 	tail_drive();
-	msleep(300);
 	botguy_up();
 	create_spin_angle_wait(rotate_speed,80);
 	printf("jetzt nach hinten\n");
@@ -77,22 +79,28 @@ void main() {
 	create_spin_angle_wait(rotate_speed,45);
 	tail_botguy();
 	create_drive_distance_wait(speed,100);
-	create_spin_angle_wait(rotate_speed,25);
+	create_spin_angle_wait(rotate_speed,20);
 	printf("Botguy holen\n");
 	set_servo_position(botguyClaw,botguyClawOpen);
 	create_drive_distance_wait(-speed, -100);
 	msleep(400);
 	set_servo_position(botguyClaw,botguyClawClosed);
 	printf("I have got the BotGuy!\n"); 
-	msleep(700);
-	create_drive_distance_wait(speed, 200);
-	create_spin_angle_wait(rotate_speed,65);
-	create_drive_distance_wait(speed, 70);
-	create_spin_angle_wait(rotate_speed,115);
-	printf("done");
+	create_drive_distance_wait(speed,100);
 	msleep(1000);
-	create_disconnect();
+	//tail_drive_slow_down();
+	create_spin_angle_wait(rotate_speed,-90);
+	msleep(1000);
+	create_drive_distance_wait(-speed,-100);
+	msleep(1000);
+	create_spin_angle_wait(rotate_speed,-70);
+	msleep(1000);
+	create_drive_distance_wait(speed,200);
+	tail_up();
+	printf("Hooks are up\n");
 	
+	printf("done\n");
+	create_disconnect();
 }
 
 void botguy_up() {
@@ -121,6 +129,22 @@ void tail_drive(){
 	set_servo_position(tailServoRight, tailServoRightDrive);
 	msleep(300);
 }
+
+void tail_drive_slow_down() {
+	motor(tailMotor, tailMotorDownSpeed);
+	while(!digital(tailDownSensor)) {}
+	freeze(tailMotor);
+	int left = get_servo_position(tailServoLeft);
+	int right = get_servo_position(tailServoRight);
+	while(left>=tailServoLeftDrive&right<=tailServoRightDrive) {
+		set_servo_position(tailServoLeft, left);
+		set_servo_position(tailServoRight, right);
+		msleep(100);
+		left = left - tailServoSlow;
+		right = right + tailServoSlow;
+	}
+}
+
 void tail_down() {
 	motor(tailMotor, tailMotorDownSpeed);
 	while(!digital(tailDownSensor)) {}
@@ -144,7 +168,7 @@ void tail_down() {
 }
 
 void tail_up() {
-	motor(tailMotor, tailMotorUpSpeed);
+	motor(tailMotor, 100);
 	msleep(500);
 	set_servo_position(tailServoLeft, tailServoLeftUp);
 	set_servo_position(tailServoRight, tailServoRightUp);
