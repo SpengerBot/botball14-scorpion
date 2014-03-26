@@ -64,7 +64,7 @@ void main() {
 	botguy_up();
 	create_spin_angle_wait(rotate_speed,80);
 	printf("jetzt nach hinten\n");
-	create_drive_distance_wait(-speed/2,-20);
+	create_drive_distance_wait(-speed/4,-20);
 	printf("jetzt nach vorne\n");
 	create_drive_distance_wait(speed, 540);
 	printf("jetzt nach links\n");
@@ -77,7 +77,7 @@ void main() {
 	create_spin_angle_wait(rotate_speed,40);
 	tail_botguy();
 	create_drive_distance_wait(speed,100);
-	create_spin_angle_wait(rotate_speed,25);
+	create_spin_angle_wait(rotate_speed,20);//!!!!
 	printf("Botguy holen\n");
 	set_servo_position(botguyClaw,botguyClawOpen);
 	create_drive_distance_wait(-speed, -93);
@@ -90,8 +90,26 @@ void main() {
 	create_spin_angle_wait(rotate_speed,-75);
 	create_drive_distance_wait(speed,250);
 	tail_up();
-	printf("Hooks are up\n");
-	set_servo_position(botguyClaw,botguyClawOpen);//löschen
+	printf("Hooks are up\nBotguy holen!");
+	create_spin_angle_wait(rotate_speed, 47);
+	create_drive_distance_wait(-speed,-450);
+		msleep(1000);
+	botguy_up();
+		msleep(1000);
+	create_drive_distance_wait(-speed,-50);
+		msleep(1000);
+	create_drive_distance_wait(speed,50);
+		msleep(1000);
+	
+	set_servo_position(botguyClaw,botguyClawOpen);
+		msleep(1000);
+	
+	create_drive_distance_wait(speed,100);
+	
+	
+	set_servo_position(botguyClaw,botguyClawClosed);//löschen
+	
+	
 	printf("done\n");
 	create_disconnect();
 }
