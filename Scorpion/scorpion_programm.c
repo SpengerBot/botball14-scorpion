@@ -1,11 +1,9 @@
 void botguy_up();
 void botguy_down();
 void tail_load();
-void botguy_slow_up();
 void tail_drive();
 void tail_down();
 void tail_botguy();
-void tail_drive_slow_down();
 void tail_up();
 
 //servos
@@ -87,19 +85,12 @@ void main() {
 	set_servo_position(botguyClaw,botguyClawClosed);
 	printf("I have got the BotGuy!\n"); 
 	create_drive_distance_wait(speed,100);
-	msleep(1000);
-	//tail_drive_slow_down();
 	create_spin_angle_wait(rotate_speed,-90);
-	msleep(1000);
 	create_drive_distance_wait(-speed,-170);
-	msleep(1000);
 	create_spin_angle_wait(rotate_speed,-75);
-	//create_spin_angle_wait(rotate_speed,-80);
-	msleep(1000);
-	create_drive_distance_wait(speed,200);
+	create_drive_distance_wait(speed,250);
 	tail_up();
 	printf("Hooks are up\n");
-	msleep(1000); //löschen
 	set_servo_position(botguyClaw,botguyClawOpen);//löschen
 	printf("done\n");
 	create_disconnect();
@@ -130,21 +121,6 @@ void tail_drive(){
 	set_servo_position(tailServoLeft, tailServoLeftDrive);
 	set_servo_position(tailServoRight, tailServoRightDrive);
 	msleep(300);
-}
-
-void tail_drive_slow_down() {
-	motor(tailMotor, tailMotorDownSpeed);
-	while(!digital(tailDownSensor)) {}
-	freeze(tailMotor);
-	int left = get_servo_position(tailServoLeft);
-	int right = get_servo_position(tailServoRight);
-	while(left>=tailServoLeftDrive&right<=tailServoRightDrive) {
-		set_servo_position(tailServoLeft, left);
-		set_servo_position(tailServoRight, right);
-		msleep(100);
-		left = left - tailServoSlow;
-		right = right + tailServoSlow;
-	}
 }
 
 void tail_down() {
