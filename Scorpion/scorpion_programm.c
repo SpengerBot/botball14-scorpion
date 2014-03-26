@@ -51,7 +51,7 @@ void main() {
 	tail_load();
 	botguy_up();
 	create_spin_angle_wait(rotate_speed,-90);
-	set_c_button_text("Tail Loaded");
+	set_c_button_text("GO!");
 	while(!c_button()){}
 	botguy_down();
 	tail_down();
