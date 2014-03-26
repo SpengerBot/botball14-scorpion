@@ -12,8 +12,8 @@ void tail_up();
 #define tailServoSlow 20
 #define tailServoFast 40
 #define botguyClaw 2
-#define botguyClawOpen 660
-#define botguyClawClosed 1500
+#define botguyClawOpen 630
+#define botguyClawClosed 1550
 //tail positions
 #define tailServoLeftUp 2000	//highest position
 #define tailServoRightUp 0
@@ -22,7 +22,7 @@ void tail_up();
 #define tailServoLeftDownMid 1200	//mid position for moving down
 #define tailServoRightDownMid 800
 #define tailServoLeftBotguy 1000	//position to not loose while getting botguy
-#define tailServoRightBotguy 1000	//>DRIVE      (UNSAFE DRIVING!)
+#define tailServoRightBotguy 1000	//>DRIVE
 #define tailServoLeftLoad 1000		//load position for setup
 #define tailServoRightLoad 1000
 #define tailServoLeftDrive 700		//position for save driving
@@ -43,6 +43,9 @@ void tail_up();
 #define tailDownSensor 10
 
 void main() {
+	set_a_button_text("");
+	set_b_button_text("");
+	set_c_button_text("");
 	set_servo_position(botguyClaw,botguyClawClosed);
 	enable_servos();
 	create_connect();
@@ -55,6 +58,9 @@ void main() {
 	while(!c_button()){}
 	botguy_down();
 	tail_down();
+	set_a_button_text("");
+	set_b_button_text("");
+	set_c_button_text("");
 	printf("wait_for_light();\n");//wait_for_light();
 	set_a_button_text("I'm the light!");
 	while(!a_button()){}
@@ -64,7 +70,7 @@ void main() {
 	botguy_up();
 	create_spin_angle_wait(rotate_speed,80);
 	printf("jetzt nach hinten\n");
-	create_drive_distance_wait(-speed/4,-20);
+	create_drive_distance_wait(-speed/3,-20);
 	printf("jetzt nach vorne\n");
 	create_drive_distance_wait(speed, 540);
 	printf("jetzt nach links\n");
@@ -77,14 +83,14 @@ void main() {
 	create_spin_angle_wait(rotate_speed,40);
 	tail_botguy();
 	create_drive_distance_wait(speed,100);
-	create_spin_angle_wait(rotate_speed,20);//!!!!
+	create_spin_angle_wait(rotate_speed,20);
 	printf("Botguy holen\n");
 	set_servo_position(botguyClaw,botguyClawOpen);
-	create_drive_distance_wait(-speed, -93);
+	create_drive_distance_wait(-speed, -107);
 	msleep(400);
 	set_servo_position(botguyClaw,botguyClawClosed);
 	printf("I have got the BotGuy!\n"); 
-	create_drive_distance_wait(speed,100);
+	create_drive_distance_wait(speed,115);
 	create_spin_angle_wait(rotate_speed,-90);
 	create_drive_distance_wait(-speed,-170);
 	create_spin_angle_wait(rotate_speed,-75);
@@ -92,14 +98,14 @@ void main() {
 	tail_up();
 	printf("Hooks are up\nBotguy holen!");
 	create_spin_angle_wait(rotate_speed, 47);
-	create_drive_distance_wait(-speed,-450);
+	create_drive_distance_wait(-speed,-350);
 		msleep(1000);
 	botguy_up();
 		msleep(1000);
-	create_drive_distance_wait(-speed,-50);
+	create_drive_distance_wait(-speed,-150);
 		msleep(1000);
-	create_drive_distance_wait(speed,50);
-		msleep(1000);
+	create_drive_distance_wait(speed,70);
+		msleep(3000);
 	
 	set_servo_position(botguyClaw,botguyClawOpen);
 		msleep(1000);
@@ -107,7 +113,7 @@ void main() {
 	create_drive_distance_wait(speed,100);
 	
 	
-	set_servo_position(botguyClaw,botguyClawClosed);//löschen
+	set_servo_position(botguyClaw,botguyClawClosed);//loeschen
 	
 	
 	printf("done\n");
@@ -117,7 +123,7 @@ void main() {
 void botguy_up() {
 	motor(botguyMotor,100);
 	while(!digital(botguyClawIsUp)){}
-	motor(botguyMotor,0);
+	freeze(botguyMotor);
 }
 
 
