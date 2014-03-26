@@ -81,7 +81,7 @@ void main() {
 	printf("Botguy holen\n");
 	set_servo_position(botguyClaw,botguyClawOpen);
 	create_drive_distance_wait(-speed, -93);
-	msleep(400);
+	//msleep(400);
 	set_servo_position(botguyClaw,botguyClawClosed);
 	printf("I have got the BotGuy!\n"); 
 	create_drive_distance_wait(speed,100);
