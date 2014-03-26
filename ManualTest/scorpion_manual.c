@@ -6,32 +6,35 @@ void botguy_down();
 void tail_drive();
 
 //servos
-#define tailServoLeft 1
-#define tailServoRight 0
-#define tailServoLeftUp 2000
-#define tailServoRightUp 0
-#define tailServoLeftDown 200
-#define tailServoRightDown 1800
-#define tailServoLeftDownMid 1200
-#define tailServoRightDownMid 800
+#define tailServoLeft 1 		//moving up = higher values
+#define tailServoRight 0		//moving up = lower values
 #define tailServoSlow 20
 #define tailServoFast 40
-#define tailServoLeftLoad 1000
-#define tailServoRightLoad 1000
-#define tailServoLeftDrive 700
-#define tailServoRightDrive 1200
 #define botguyClaw 2
 #define botguyClawOpen 660
 #define botguyClawClosed 1500
+//tail positions
+#define tailServoLeftUp 2000	//highest position
+#define tailServoRightUp 0
+#define tailServoLeftDown 200	//down position for starting
+#define tailServoRightDown 1800
+#define tailServoLeftDownMid 1200	//mid position for moving down
+#define tailServoRightDownMid 800
+#define tailServoLeftBotguy 1000	//position to not loose while getting botguy
+#define tailServoRightBotguy 1000	//>DRIVE      (UNSAFE DRIVING!)
+#define tailServoLeftLoad 1000		//load position for setup
+#define tailServoRightLoad 1000
+#define tailServoLeftDrive 700		//position for save driving
+#define tailServoRightDrive 1300
 
 //motors
-#define tailMotor 1
-#define tailMotorUpSpeed 40
-#define tailMotorDownSpeed -1
-#define tailMotorLoadSpeed 50
 #define botguyMotor 0
 #define speed 500
 #define rotate_speed 250
+#define tailMotor 1
+#define tailMotorUpSpeed 40
+#define tailMotorDownSpeed -1
+#define tailMotorLoadSpeed 55
 
 //sensors
 #define botguyClawIsUp 14
@@ -72,8 +75,21 @@ void botguy_down() {
 	motor(botguyMotor,10);
 }
 
+void tail_load() {
+	motor(tailMotor, tailMotorLoadSpeed+5);
+	msleep(500);
+	set_servo_position(tailServoLeft, tailServoLeftLoad);
+	set_servo_position(tailServoRight, tailServoRightLoad);
+	while(!digital(tailUpSensor)) {}
+	freeze(tailMotor);
+}
+void tail_drive(){
+	set_servo_position(tailServoLeft, tailServoLeftDrive);
+	set_servo_position(tailServoRight, tailServoRightDrive);
+	msleep(300);
+}
+
 void tail_down() {
-	
 	motor(tailMotor, tailMotorDownSpeed);
 	while(!digital(tailDownSensor)) {}
 	freeze(tailMotor);
@@ -96,25 +112,20 @@ void tail_down() {
 }
 
 void tail_up() {
-	motor(tailMotor, tailMotorUpSpeed);
+	motor(tailMotor, 100);
 	msleep(500);
 	set_servo_position(tailServoLeft, tailServoLeftUp);
 	set_servo_position(tailServoRight, tailServoRightUp);
 	msleep(600);
 	freeze(tailMotor);
-	//drive
-	create_drive_distance_wait(-100,-250);
-}
-void tail_drive(){
-	set_servo_position(tailServoLeft, tailServoLeftDrive);
-	set_servo_position(tailServoRight, tailServoRightDrive);
+	create_drive_distance_wait(-100,-250); //drive
 }
 
-void tail_load() {
-	motor(tailMotor, tailMotorLoadSpeed);
+void tail_botguy(){
+	motor(tailMotor, tailMotorUpSpeed);
 	msleep(500);
-	set_servo_position(tailServoLeft, tailServoLeftLoad);
-	set_servo_position(tailServoRight, tailServoRightLoad);
-	while(!digital(tailUpSensor)) {}
+	set_servo_position(tailServoLeft, tailServoLeftBotguy);
+	set_servo_position(tailServoRight, tailServoRightBotguy);
+	msleep(600);
 	freeze(tailMotor);
 }
