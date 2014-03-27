@@ -12,8 +12,8 @@ void tail_up();
 #define tailServoSlow 20
 #define tailServoFast 40
 #define botguyClaw 2
-#define botguyClawOpen 630
-#define botguyClawClosed 1550
+#define botguyClawOpen 660
+#define botguyClawClosed 1450
 //tail positions
 #define tailServoLeftUp 2000	//highest position
 #define tailServoRightUp 0
@@ -48,12 +48,14 @@ void main() {
 	set_c_button_text("");
 	set_servo_position(botguyClaw,botguyClawClosed);
 	enable_servos();
+	printf("Waiting for Create\n");
 	create_connect();
 	create_full();
 	printf("CREATE Connected :)\n");
 	tail_load();
 	botguy_up();
 	create_spin_angle_wait(rotate_speed,-90);
+	printf("Waiting for the Hangers\n");
 	set_c_button_text("GO!");
 	while(!c_button()){}
 	botguy_down();
@@ -64,16 +66,13 @@ void main() {
 	printf("wait_for_light();\n");//wait_for_light();
 	set_a_button_text("I'm the light!");
 	while(!a_button()){}
-	printf("Light is on!!!");
+	printf("Light is on!!!\n");
 	msleep(2000);
 	tail_drive();
 	botguy_up();
 	create_spin_angle_wait(rotate_speed,80);
-	printf("jetzt nach hinten\n");
 	create_drive_distance_wait(-speed/3,-20);
-	printf("jetzt nach vorne\n");
 	create_drive_distance_wait(speed, 540);
-	printf("jetzt nach links\n");
 	create_spin_angle_wait(rotate_speed,85);
 	create_drive_distance_wait(-speed, -200);
 	msleep(200);
@@ -84,19 +83,19 @@ void main() {
 	tail_botguy();
 	create_drive_distance_wait(speed,100);
 	create_spin_angle_wait(rotate_speed,20);
-	printf("Botguy holen\n");
+	printf("Get Botguy\n");
 	set_servo_position(botguyClaw,botguyClawOpen);
-	create_drive_distance_wait(-speed, -107);
+	create_drive_distance_wait(-speed, -105);
 	msleep(400);
 	set_servo_position(botguyClaw,botguyClawClosed);
 	printf("I have got the BotGuy!\n"); 
-	create_drive_distance_wait(speed,115);
+	create_drive_distance_wait(speed,117);
 	create_spin_angle_wait(rotate_speed,-90);
 	create_drive_distance_wait(-speed,-170);
 	create_spin_angle_wait(rotate_speed,-75);
 	create_drive_distance_wait(speed,250);
 	tail_up();
-	printf("Hooks are up\nBotguy holen!");
+	printf("Hooks are up\nBring Botguy!\n");
 	create_spin_angle_wait(rotate_speed, 47);
 	create_drive_distance_wait(-speed,-350);
 		msleep(1000);
