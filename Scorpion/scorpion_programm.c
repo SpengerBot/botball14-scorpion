@@ -71,7 +71,7 @@ void main() {
 	set_a_button_text("I'm the light!");
 	while(!a_button()){}
 	printf("Light is on!!!\n");
-	msleep(2000);
+	msleep(1500);
 	tail_drive();
 	botguy_up();
 	create_spin_angle_wait(rotate_speed,80);
@@ -89,7 +89,7 @@ void main() {
 	create_spin_angle_wait(rotate_speed,29);
 	printf("Get Botguy\n");
 	set_servo_position(botguyClaw,botguyClawOpen);
-	create_drive_distance_wait(-speed, -100);
+	create_drive_distance_wait(-speed, -70);
 	msleep(400);
 	set_servo_position(botguyClaw,botguyClawClosed);
 	printf("I have got the BotGuy!\n"); 
@@ -97,7 +97,7 @@ void main() {
 	create_spin_angle_wait(rotate_speed,-90);
 	create_drive_distance_wait(-speed,-170);
 	create_spin_angle_wait(rotate_speed,-75);
-	create_drive_distance_wait(speed,390);
+	create_drive_distance_wait(speed,250);
 	tail_up();
 	printf("Hooks are up\nBring Botguy!\n");
 	create_spin_angle_wait(rotate_speed, 47);
