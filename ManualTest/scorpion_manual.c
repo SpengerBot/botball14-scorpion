@@ -12,7 +12,7 @@ void tail_up();
 #define tailServoSlow 20
 #define tailServoFast 40
 #define botguyClaw 2
-#define botguyClawOpen 660
+#define botguyClawOpen 700
 #define botguyClawClosed 1450
 //tail positions
 #define tailServoLeftUp 2000	//highest position
@@ -96,7 +96,7 @@ void botguy_up() {
 void botguy_down() {
 	motor(botguyMotor,-40);
 	msleep(720);
-	motor(botguyMotor,0);
+	freeze(botguyMotor);
 }
 
 void tail_load() {
