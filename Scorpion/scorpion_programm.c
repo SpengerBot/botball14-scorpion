@@ -47,18 +47,22 @@ void main() {
 	set_b_button_text("");
 	set_c_button_text("");
 	set_servo_position(botguyClaw,botguyClawClosed);
-	enable_servos();
 	printf("Waiting for Create\n");
 	create_connect();
 	create_full();
-	printf("CREATE Connected :)\n");
+	display_clear();
+	printf("CREATE Connected :)\nWaiting for tail load\nHelp the Servo or Button if necessary!");
+	enable_servos();
 	tail_load();
 	botguy_up();
 	create_spin_angle_wait(rotate_speed,-90);
-	printf("Waiting for the Hangers\n");
+	display_clear();
+	printf("Please load the Hangers\n");
 	set_c_button_text("GO!");
 	while(!c_button()){}
 	botguy_down();
+	display_clear();
+	printf("Waiting for tail to turn down\nHelp the Servo or Button if necessary!");
 	tail_down();
 	set_a_button_text("");
 	set_b_button_text("");
