@@ -1,9 +1,10 @@
-void tail_up();
-void tail_load();
-void tail_down();
 void botguy_up();
 void botguy_down();
+void tail_load();
 void tail_drive();
+void tail_down();
+void tail_botguy();
+void tail_up();
 
 //servos
 #define tailServoLeft 1 		//moving up = higher values
@@ -12,7 +13,7 @@ void tail_drive();
 #define tailServoFast 40
 #define botguyClaw 2
 #define botguyClawOpen 660
-#define botguyClawClosed 1500
+#define botguyClawClosed 1450
 //tail positions
 #define tailServoLeftUp 2000	//highest position
 #define tailServoRightUp 0
@@ -21,7 +22,7 @@ void tail_drive();
 #define tailServoLeftDownMid 1200	//mid position for moving down
 #define tailServoRightDownMid 800
 #define tailServoLeftBotguy 1000	//position to not loose while getting botguy
-#define tailServoRightBotguy 1000	//>DRIVE      (UNSAFE DRIVING!)
+#define tailServoRightBotguy 1000	//>DRIVE
 #define tailServoLeftLoad 1000		//load position for setup
 #define tailServoRightLoad 1000
 #define tailServoLeftDrive 700		//position for save driving
@@ -41,14 +42,21 @@ void tail_drive();
 #define tailUpSensor 8
 #define tailDownSensor 10
 
+int botguyclaw = 0;
+
 void main() {
-	enable_servos();
 	create_connect();
 	create_full();
 	set_c_button_text("Tail Load");
 	set_a_button_text("Tail Down");
-	set_b_button_text("Tail UP");
-	//botguy_up();
+	set_b_button_text("Tail Up");
+	set_x_button_text("Botguy Up");
+	set_y_button_text("Botguy Down");
+	set_z_button_text("Botguy Claw");
+	extra_buttons_show();
+	botguy_up();
+	enable_servos();
+	set_servo_position(botguyClaw,botguyClawClosed);
 	while(!side_button()) {
 		if(a_button()) {
 			tail_down();
@@ -59,20 +67,36 @@ void main() {
 		} else if(c_button()) {
 			tail_load();
 			msleep(500);
+		} else if(x_button()) {
+			botguy_up();
+			msleep(500);
+		} else if(y_button()) {
+			botguy_down();
+			msleep(500);
+		} else if(z_button()) {
+			if(botguyclaw) {
+				set_servo_position(botguyClaw,botguyClawClosed);
+				botguyclaw = 0;
+			} else {
+				set_servo_position(botguyClaw,botguyClawOpen);
+				botguyclaw = 1;
+			}
+			msleep(500);
 		}
 	}
 }
 
 void botguy_up() {
-	motor(botguyMotor,75);
+	motor(botguyMotor,100);
 	while(!digital(botguyClawIsUp)){}
-	motor(botguyMotor,0);
+	freeze(botguyMotor);
 }
+
 
 void botguy_down() {
 	motor(botguyMotor,-40);
-	msleep(700);
-	motor(botguyMotor,10);
+	msleep(720);
+	motor(botguyMotor,0);
 }
 
 void tail_load() {
