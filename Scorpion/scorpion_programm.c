@@ -51,7 +51,7 @@ void main() {
 	create_connect();
 	create_full();
 	display_clear();
-	printf("CREATE Connected :)\nWaiting for tail load\nHelp the Servo or Button if necessary!");
+	printf("CREATE Connected :)\nWaiting for tail load\nHelp the Servo or Button if necessary!\n");
 	enable_servos();
 	tail_load();
 	botguy_up();
@@ -62,7 +62,7 @@ void main() {
 	while(!c_button()){}
 	botguy_down();
 	display_clear();
-	printf("Waiting for tail to turn down\nHelp the Servo or Button if necessary!");
+	printf("Waiting for tail to turn down\nHelp the Servo or Button if necessary!\n");
 	tail_down();
 	set_a_button_text("");
 	set_b_button_text("");
