@@ -104,12 +104,11 @@ void main() {
 	create_spin_angle_wait(rotate_speed, 47);
 	create_drive_distance_wait(-speed,-330);
 	botguy_up();
-	create_drive_distance_wait(-speed,-150);
+	create_drive_distance_wait(-speed,-180);
 	create_drive_distance_wait(speed,100);
 	motor(botguyMotor,-50);
 	msleep(100);
 	freeze(botguyMotor);
-	create_drive_distance_wait(10,50);
 	printf("done\n");
 	create_disconnect();
 }
