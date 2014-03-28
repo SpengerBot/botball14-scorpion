@@ -12,8 +12,8 @@ void tail_up();
 #define tailServoSlow 20
 #define tailServoFast 40
 #define botguyClaw 2
-#define botguyClawOpen 700
-#define botguyClawClosed 1450
+#define botguyClawOpen 850
+#define botguyClawClosed 50
 //tail positions
 #define tailServoLeftUp 2000	//highest position
 #define tailServoRightUp 0
@@ -54,9 +54,9 @@ void main() {
 	set_y_button_text("Botguy Down");
 	set_z_button_text("Botguy Claw");
 	extra_buttons_show();
-	botguy_up();
-	enable_servos();
 	set_servo_position(botguyClaw,botguyClawClosed);
+	enable_servos();
+	botguy_up();
 	while(!side_button()) {
 		if(a_button()) {
 			tail_down();

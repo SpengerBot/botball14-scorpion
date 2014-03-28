@@ -12,8 +12,8 @@ void tail_up();
 #define tailServoSlow 20
 #define tailServoFast 40
 #define botguyClaw 2
-#define botguyClawOpen 700
-#define botguyClawClosed 1450
+#define botguyClawOpen 850
+#define botguyClawClosed 50
 //tail positions
 #define tailServoLeftUp 2000	//highest position
 #define tailServoRightUp 0
@@ -56,6 +56,7 @@ void main() {
 	tail_load();
 	botguy_up();
 	create_spin_angle_wait(rotate_speed,-90);
+	create_drive_distance_wait(-speed,-10);
 	display_clear();
 	printf("Please load the Hangers\n");
 	set_c_button_text("GO!");
@@ -78,7 +79,7 @@ void main() {
 	create_drive_distance_wait(-210,-20);
 	create_drive_distance_wait(speed, 540);
 	create_spin_angle_wait(rotate_speed,85);
-	create_drive_distance_wait(-speed, -200);
+	create_drive_distance_wait(-speed, -210);//200
 	msleep(200);
 	botguy_down();
 	create_drive_distance_wait(-speed, -100);
@@ -97,28 +98,18 @@ void main() {
 	create_spin_angle_wait(rotate_speed,-90);
 	create_drive_distance_wait(-speed,-170);
 	create_spin_angle_wait(rotate_speed,-75);
-	create_drive_distance_wait(speed,250);
+	create_drive_distance_wait(speed,335);
 	tail_up();
 	printf("Hooks are up\nBring Botguy!\n");
 	create_spin_angle_wait(rotate_speed, 47);
 	create_drive_distance_wait(-speed,-330);
-		msleep(1000);
 	botguy_up();
-		msleep(1000);
 	create_drive_distance_wait(-speed,-150);
-		msleep(1000);
 	create_drive_distance_wait(speed,100);
-		msleep(3000);
-	
-	set_servo_position(botguyClaw,botguyClawOpen);
-		msleep(1000);
-	
-	create_drive_distance_wait(speed,100);
-	
-	
-	set_servo_position(botguyClaw,botguyClawClosed);//loeschen
-	
-	
+	motor(botguyMotor,-50);
+	msleep(100);
+	freeze(botguyMotor);
+	create_drive_distance_wait(10,50);
 	printf("done\n");
 	create_disconnect();
 }
@@ -132,7 +123,7 @@ void botguy_up() {
 
 void botguy_down() {
 	motor(botguyMotor,-40);
-	msleep(850);
+	msleep(800);
 	freeze(botguyMotor);
 }
 
