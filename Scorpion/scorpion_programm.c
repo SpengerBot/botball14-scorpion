@@ -14,6 +14,7 @@ void tail_up();
 #define botguyClaw 2
 #define botguyClawOpen 850
 #define botguyClawClosed 50
+
 //tail positions
 #define tailServoLeftUp 2000	//highest position
 #define tailServoRightUp 0
@@ -73,6 +74,7 @@ void main() {
 	while(!a_button()){}
 	printf("Light is on!!!\n");
 	msleep(1500);
+	shut_down_in(100);
 	tail_drive();
 	botguy_up();
 	create_spin_angle_wait(rotate_speed,80);
