@@ -78,7 +78,7 @@ void main() {
 	create_drive_distance_wait(-210,-20);
 	create_drive_distance_wait(speed, 540);
 	create_spin_angle_wait(rotate_speed,85);
-	create_drive_distance_wait(-speed, -210);//200
+	create_drive_distance_wait(-speed, -210);
 	msleep(200);
 	botguy_down();
 	create_drive_distance_wait(-speed, -100);
@@ -168,7 +168,7 @@ void tail_up() {
 	set_servo_position(tailServoRight, tailServoRightUp);
 	msleep(600);
 	freeze(tailMotor);
-	create_drive_distance_wait(-100,-250); //drive
+	create_drive_distance_wait(-100,-250);
 }
 
 void tail_botguy(){
