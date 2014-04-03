@@ -42,6 +42,7 @@ void tail_up();
 #define botguyClawIsUp 14
 #define tailUpSensor 8
 #define tailDownSensor 10
+#define lightSensor 1	//TestSensor = 1; RealSensor = 0
 
 void main() {
 	set_a_button_text("");
@@ -69,11 +70,7 @@ void main() {
 	set_a_button_text("");
 	set_b_button_text("");
 	set_c_button_text("");
-	printf("wait_for_light();\n");//wait_for_light();
-	set_a_button_text("I'm the light!");
-	while(!a_button()){}
-	printf("Light is on!!!\n");
-	msleep(1500);
+	wait_for_light(lightSensor);
 	shut_down_in(100);
 	tail_drive();
 	botguy_up();
