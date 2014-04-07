@@ -12,8 +12,9 @@ void tail_up();
 #define tailServoSlow 20
 #define tailServoFast 40
 #define botguyClaw 2
-#define botguyClawOpen 850
-#define botguyClawClosed 50
+#define botguyClawOpen 1050
+#define botguyClawClosed 300
+
 //tail positions
 #define tailServoLeftUp 2000	//highest position
 #define tailServoRightUp 0
