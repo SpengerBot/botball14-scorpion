@@ -46,14 +46,14 @@ void tail_up();
 int botguyclaw = 0;
 
 void main() {
-	create_connect();
-	create_full();
+	//create_connect();
+	//create_full();
 	set_c_button_text("Tail Load");
 	set_a_button_text("Tail Down");
 	set_b_button_text("Tail Up");
-	set_x_button_text("Botguy Up");
+	set_x_button_text("Tail BotGuy");
 	set_y_button_text("Botguy Down");
-	set_z_button_text("Botguy Claw");
+	set_z_button_text("Botguy Claw Open");
 	extra_buttons_show();
 	set_servo_position(botguyClaw,botguyClawClosed);
 	enable_servos();
@@ -69,17 +69,25 @@ void main() {
 			tail_load();
 			msleep(500);
 		} else if(x_button()) {
-			botguy_up();
+			tail_botguy();
 			msleep(500);
 		} else if(y_button()) {
-			botguy_down();
+			if(botguyClawIsUp) {
+				botguy_down();
+				set_y_button_text("Botguy Up");
+			} else {
+				botguy_up();
+				set_y_button_text("Botguy Down");
+			}
 			msleep(500);
 		} else if(z_button()) {
 			if(botguyclaw) {
 				set_servo_position(botguyClaw,botguyClawClosed);
+				set_z_button_text("Botguy Claw Open");
 				botguyclaw = 0;
 			} else {
 				set_servo_position(botguyClaw,botguyClawOpen);
+				set_z_button_text("Botguy Claw Close");
 				botguyclaw = 1;
 			}
 			msleep(500);
@@ -92,7 +100,6 @@ void botguy_up() {
 	while(!digital(botguyClawIsUp)){}
 	freeze(botguyMotor);
 }
-
 
 void botguy_down() {
 	motor(botguyMotor,-40);
@@ -108,6 +115,7 @@ void tail_load() {
 	while(!digital(tailUpSensor)) {}
 	freeze(tailMotor);
 }
+
 void tail_drive(){
 	set_servo_position(tailServoLeft, tailServoLeftDrive);
 	set_servo_position(tailServoRight, tailServoRightDrive);
@@ -143,7 +151,7 @@ void tail_up() {
 	set_servo_position(tailServoRight, tailServoRightUp);
 	msleep(600);
 	freeze(tailMotor);
-	create_drive_distance_wait(-100,-250); //drive
+	create_drive_distance_wait(-100,-250);
 }
 
 void tail_botguy(){
