@@ -42,7 +42,7 @@ void tail_up();
 #define botguyClawIsUp 14
 #define tailUpSensor 8
 #define tailDownSensor 10
-#define lightSensor 1	//TestSensor = 1; RealSensor = 0
+#define lightSensor 0
 
 void main() {
 	set_a_button_text("");
@@ -57,8 +57,8 @@ void main() {
 	enable_servos();
 	tail_load();
 	botguy_up();
-	create_spin_angle_wait(rotate_speed,-90);
-	create_drive_distance_wait(-speed,-10);
+	create_spin_angle_wait(rotate_speed,180);
+	create_drive_distance_wait(-speed,-5);
 	display_clear();
 	printf("Please load the Hangers\n");
 	set_c_button_text("GO!");
@@ -72,24 +72,23 @@ void main() {
 	set_c_button_text("");
 	wait_for_light(lightSensor);
 	shut_down_in(100);
-	tail_drive();
+	tail_botguy();//tail_drive();
 	botguy_up();
-	create_spin_angle_wait(rotate_speed,80);
-	create_drive_distance_wait(-210,-20);
-	create_drive_distance_wait(speed, 540);
-	create_spin_angle_wait(rotate_speed,85);
-	create_drive_distance_wait(-speed, -210);
+	create_spin_angle_wait(rotate_speed,-80);
+	create_drive_distance_wait(-speed, -450);
+	create_spin_angle_wait(rotate_speed,-80);
+	create_drive_distance_wait(-speed, -230);
 	msleep(200);
 	botguy_down();
-	create_drive_distance_wait(-speed, -100);
+	create_drive_distance_wait(-speed, -120);
 	printf("I have got the cube!\n");
 	create_spin_angle_wait(rotate_speed,40);
-	tail_botguy();
+	//tail_botguy();
 	create_drive_distance_wait(speed,100);
 	create_spin_angle_wait(rotate_speed,29);
 	printf("Get Botguy\n");
 	set_servo_position(botguyClaw,botguyClawOpen);
-	create_drive_distance_wait(-speed, -70);
+	create_drive_distance_wait(-speed, -80);
 	msleep(400);
 	set_servo_position(botguyClaw,botguyClawClosed);
 	printf("I have got the BotGuy!\n"); 
@@ -97,7 +96,7 @@ void main() {
 	create_spin_angle_wait(rotate_speed,-90);
 	create_drive_distance_wait(-speed,-170);
 	create_spin_angle_wait(rotate_speed,-75);
-	create_drive_distance_wait(speed,335);
+	create_drive_distance_wait(speed,360);
 	tail_up();
 	printf("Hooks are up\nBring Botguy!\n");
 	create_spin_angle_wait(rotate_speed, 47);
