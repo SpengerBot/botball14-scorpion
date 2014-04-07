@@ -21,12 +21,10 @@ void tail_up();
 #define tailServoRightDown 1800
 #define tailServoLeftDownMid 1200	//mid position for moving down
 #define tailServoRightDownMid 800
-#define tailServoLeftBotguy 1000	//position to not loose while getting botguy
-#define tailServoRightBotguy 1000	//>DRIVE
+#define tailServoLeftBotguy 900	//1000	//position to not loose while getting botguy
+#define tailServoRightBotguy 1100	//1000 //>DRIVE
 #define tailServoLeftLoad 1000		//load position for setup
 #define tailServoRightLoad 1000
-#define tailServoLeftDrive 700		//position for save driving
-#define tailServoRightDrive 1300
 
 //motors
 #define botguyMotor 0
@@ -83,10 +81,10 @@ void main() {
 	printf("I have got the cube!\n");
 	create_spin_angle_wait(rotate_speed,40);
 	create_drive_distance_wait(speed,150);
-	create_spin_angle_wait(rotate_speed,36);
+	create_spin_angle_wait(rotate_speed,37);
 	printf("Get Botguy\n");
 	set_servo_position(botguyClaw,botguyClawOpen);
-	create_drive_distance_wait(-speed, -95);
+	create_drive_distance_wait(-speed, -100);
 	msleep(400);
 	set_servo_position(botguyClaw,botguyClawClosed);
 	printf("I have got the BotGuy!\n"); 
@@ -94,7 +92,7 @@ void main() {
 	create_spin_angle_wait(rotate_speed,-90);
 	create_drive_distance_wait(-speed,-170);
 	create_spin_angle_wait(rotate_speed,-75);
-	create_drive_distance_wait(speed,360);
+	create_drive_distance_wait(speed,300);
 	tail_up();
 	printf("Hooks are up\nBring Botguy!\n");
 	create_spin_angle_wait(rotate_speed, 47);
