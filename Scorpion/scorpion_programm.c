@@ -1,6 +1,7 @@
 void botguy_up();
 void botguy_down();
 void tail_load();
+void tail_drive();
 void tail_down();
 void tail_botguy();
 void tail_up();
@@ -21,10 +22,12 @@ void tail_up();
 #define tailServoRightDown 1800
 #define tailServoLeftDownMid 1200	//mid position for moving down
 #define tailServoRightDownMid 800
-#define tailServoLeftBotguy 900	//1000	//position to not loose while getting botguy
-#define tailServoRightBotguy 1100	//1000 //>DRIVE
-#define tailServoLeftLoad 1000		//load position for setup
-#define tailServoRightLoad 1000
+#define tailServoLeftBotguy 900		//position to not loose while getting botguy
+#define tailServoRightBotguy 1100	//>DRIVE
+#define tailServoLeftLoad 800		//load position for setup
+#define tailServoRightLoad 1200
+#define tailServoLeftDrive 700		//position for save driving
+#define tailServoRightDrive 1300
 
 //motors
 #define botguyMotor 0
@@ -69,9 +72,9 @@ void main() {
 	set_c_button_text("");
 	wait_for_light(lightSensor);
 	shut_down_in(100);
-	tail_botguy();
+	tail_drive();
 	botguy_up();
-	create_spin_angle_wait(rotate_speed,-80);
+	create_spin_angle_wait(rotate_speed/2,-85);
 	create_drive_distance_wait(-speed, -450);
 	create_spin_angle_wait(rotate_speed,-78);
 	create_drive_distance_wait(-speed, -225);
@@ -80,6 +83,7 @@ void main() {
 	create_drive_distance_wait(-speed, -120);
 	printf("I have got the cube!\n");
 	create_spin_angle_wait(rotate_speed,40);
+	tail_botguy();
 	create_drive_distance_wait(speed,150);
 	create_spin_angle_wait(rotate_speed,37);
 	printf("Get Botguy\n");
@@ -92,7 +96,7 @@ void main() {
 	create_spin_angle_wait(rotate_speed,-90);
 	create_drive_distance_wait(-speed,-170);
 	create_spin_angle_wait(rotate_speed,-75);
-	create_drive_distance_wait(speed,300);
+	create_drive_distance_wait(speed,290);
 	tail_up();
 	printf("Hooks are up\nBring Botguy!\n");
 	create_spin_angle_wait(rotate_speed, 47);
@@ -127,6 +131,12 @@ void tail_load() {
 	set_servo_position(tailServoRight, tailServoRightLoad);
 	while(!digital(tailUpSensor)) {}
 	freeze(tailMotor);
+}
+
+void tail_drive(){
+	set_servo_position(tailServoLeft, tailServoLeftDrive);
+	set_servo_position(tailServoRight, tailServoRightDrive);
+	msleep(300);
 }
 
 void tail_down() {

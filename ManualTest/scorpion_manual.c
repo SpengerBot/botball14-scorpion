@@ -22,10 +22,10 @@ void tail_up();
 #define tailServoRightDown 1800
 #define tailServoLeftDownMid 1200	//mid position for moving down
 #define tailServoRightDownMid 800
-#define tailServoLeftBotguy 1000	//position to not loose while getting botguy
-#define tailServoRightBotguy 1000	//>DRIVE
-#define tailServoLeftLoad 1000		//load position for setup
-#define tailServoRightLoad 1000
+#define tailServoLeftBotguy 900		//position to not loose while getting botguy
+#define tailServoRightBotguy 1100	//>DRIVE
+#define tailServoLeftLoad 800		//load position for setup
+#define tailServoRightLoad 1200
 #define tailServoLeftDrive 700		//position for save driving
 #define tailServoRightDrive 1300
 
