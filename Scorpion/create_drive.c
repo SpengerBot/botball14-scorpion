@@ -1,13 +1,15 @@
 /**
 * Author: Alexander Halbarth
 * Function: Sends Stop command to the Create.
+*
+* Has 5 Byte
 */
 void stop() {
-	create_write_byte(137);        // stop move by changing speed and radius to 0
-	create_write_byte(0);          // send high byte (0 speed)
-	create_write_byte(0);          // send low byte (0 speed)
-	create_write_byte(0);          // null turn radius
-	create_write_byte(0);          // null turn radius
+	create_write_byte(145);        // stop move by changing speed and radius to 0
+	create_write_byte(0);          // send right high byte (0 speed)
+	create_write_byte(0);          // send right low byte (0 speed)
+	create_write_byte(0);          // send left high byte (0 speed)
+	create_write_byte(0);          // send left low byte (0 speed)
 }
 
 /**
@@ -24,11 +26,11 @@ void create_drive_distance(int speed, int dist) {
 	}
 	create_write_byte(152);        // specifies start of script definition
 	create_write_byte(13);         // specifies number of bytes to follow,(defining the script)
-	create_write_byte(137);        // drive command (speed and turn radius in next 4 bytes)
-	create_write_byte(speed >> 8); // send speed high byte (bits 8-15 shifted to 0-7)
-	create_write_byte(speed);      // send speed low byte
-	create_write_byte(128);        // send hex 80
-	create_write_byte(0);          // send hex 00 (special case: turn radius hex 8000 or 7FFF is straight)
+	create_write_byte(145);        // drive command
+	create_write_byte(speed >> 8); // send right speed high byte (bits 8-15 shifted to 0-7)
+	create_write_byte(speed);      // send right speed low byte
+	create_write_byte(speed >> 8); // send left speed high byte (bits 8-15 shifted to 0-7)
+	create_write_byte(speed);      // send left speed low byte
 	create_write_byte(156);        // wait for distance done (in mm)
 	create_write_byte(dist >> 8);  // send dist high byte
 	create_write_byte(dist);       // send dist low byte
