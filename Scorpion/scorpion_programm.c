@@ -1,7 +1,6 @@
 void botguy_up();
 void botguy_down();
 void tail_load();
-void tail_drive();
 void tail_down();
 void tail_botguy();
 void tail_up();
@@ -72,23 +71,22 @@ void main() {
 	set_c_button_text("");
 	wait_for_light(lightSensor);
 	shut_down_in(100);
-	tail_botguy();//tail_drive();
+	tail_botguy();
 	botguy_up();
 	create_spin_angle_wait(rotate_speed,-80);
 	create_drive_distance_wait(-speed, -450);
-	create_spin_angle_wait(rotate_speed,-80);
-	create_drive_distance_wait(-speed, -230);
+	create_spin_angle_wait(rotate_speed,-78);
+	create_drive_distance_wait(-speed, -225);
 	msleep(200);
 	botguy_down();
 	create_drive_distance_wait(-speed, -120);
 	printf("I have got the cube!\n");
 	create_spin_angle_wait(rotate_speed,40);
-	//tail_botguy();
-	create_drive_distance_wait(speed,100);
-	create_spin_angle_wait(rotate_speed,29);
+	create_drive_distance_wait(speed,150);
+	create_spin_angle_wait(rotate_speed,36);
 	printf("Get Botguy\n");
 	set_servo_position(botguyClaw,botguyClawOpen);
-	create_drive_distance_wait(-speed, -80);
+	create_drive_distance_wait(-speed, -95);
 	msleep(400);
 	set_servo_position(botguyClaw,botguyClawClosed);
 	printf("I have got the BotGuy!\n"); 
@@ -131,11 +129,6 @@ void tail_load() {
 	set_servo_position(tailServoRight, tailServoRightLoad);
 	while(!digital(tailUpSensor)) {}
 	freeze(tailMotor);
-}
-void tail_drive(){
-	set_servo_position(tailServoLeft, tailServoLeftDrive);
-	set_servo_position(tailServoRight, tailServoRightDrive);
-	msleep(300);
 }
 
 void tail_down() {
