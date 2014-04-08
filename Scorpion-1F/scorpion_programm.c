@@ -85,7 +85,7 @@ void main() {
 	create_spin_angle_wait(rotate_speed,40);
 	tail_botguy();
 	create_drive_distance_wait(speed,150);
-	create_spin_angle_wait(rotate_speed,32);
+	create_spin_angle_wait(rotate_speed,30);
 	printf("Get Botguy\n");
 	set_servo_position(botguyClaw,botguyClawOpen);
 	create_drive_distance_wait(-speed, -100);
