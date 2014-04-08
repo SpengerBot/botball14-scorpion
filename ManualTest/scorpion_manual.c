@@ -103,7 +103,7 @@ void botguy_up() {
 
 void botguy_down() {
 	motor(botguyMotor,-40);
-	msleep(720);
+	msleep(700);
 	freeze(botguyMotor);
 }
 
