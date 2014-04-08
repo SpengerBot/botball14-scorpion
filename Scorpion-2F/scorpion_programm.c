@@ -76,7 +76,7 @@ void main() {
 	botguy_up();
 	create_spin_angle_wait(rotate_speed/2,-85);
 	create_drive_distance_wait(-speed, -450);
-	create_spin_angle_wait(rotate_speed,-80);
+	create_spin_angle_wait(rotate_speed,-78);
 	create_drive_distance_wait(-speed, -225);
 	msleep(200);
 	botguy_down();
