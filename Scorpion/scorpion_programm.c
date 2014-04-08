@@ -85,7 +85,7 @@ void main() {
 	create_spin_angle_wait(rotate_speed,40);
 	tail_botguy();
 	create_drive_distance_wait(speed,150);
-	create_spin_angle_wait(rotate_speed,37);
+	create_spin_angle_wait(rotate_speed,32);
 	printf("Get Botguy\n");
 	set_servo_position(botguyClaw,botguyClawOpen);
 	create_drive_distance_wait(-speed, -100);
@@ -174,20 +174,8 @@ void tail_up() {
 void tail_botguy(){
 	motor(tailMotor, tailMotorUpSpeed);
 	msleep(500);
-	int left = get_servo_position(tailServoLeft);
-	int right = get_servo_position(tailServoRight);
-	int i = 0;
-	while(left<=tailServoLeftBotguy&right>=tailServoRightBotguy) {
-		set_servo_position(tailServoLeft, left);
-		set_servo_position(tailServoRight, right);
-		msleep(50);
-		left = left + tailServoSlow;
-		right = right - tailServoSlow;
-		if(i==12) {
-			freeze(tailMotor);
-		} else {
-			i++;
-		}
-	}
+	set_servo_position(tailServoLeft, tailServoLeftBotguy);
+	set_servo_position(tailServoRight, tailServoRightBotguy);
+	msleep(600);
 	freeze(tailMotor);
 }
