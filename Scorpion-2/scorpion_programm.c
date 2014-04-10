@@ -103,7 +103,7 @@ void main() {
 	create_spin_angle_wait(rotate_speed, 45);
 	create_drive_distance_wait(-speed,-330);
 	botguy_up_emerg();
-	create_drive_distance_wait(-speed,-180);
+	create_drive_distance_wait(-speed,-210);
 	create_drive_distance_wait(speed,100);
 	motor(botguyMotor,-50);
 	msleep(100);
