@@ -1,4 +1,4 @@
-void botguy_up();
+void botguy_up_emerg();
 void botguy_down();
 void tail_load();
 void tail_drive();
@@ -44,6 +44,7 @@ void tail_up();
 #define tailDownSensor 10
 
 int botguyclaw = 0;
+int botguy;
 
 void main() {
 	//create_connect();
@@ -57,7 +58,7 @@ void main() {
 	extra_buttons_show();
 	set_servo_position(botguyClaw,botguyClawClosed);
 	enable_servos();
-	botguy_up();
+	botguy_up_emerg();
 	while(!side_button()) {
 		if(a_button()) {
 			tail_down();
@@ -72,11 +73,11 @@ void main() {
 			tail_botguy();
 			msleep(500);
 		} else if(y_button()) {
-			if(botguyClawIsUp) {
+			if(botguy) {
 				botguy_down();
 				set_y_button_text("Botguy Up");
 			} else {
-				botguy_up();
+				botguy_up_emerg();
 				set_y_button_text("Botguy Down");
 			}
 			msleep(500);
@@ -95,13 +96,16 @@ void main() {
 	}
 }
 
-void botguy_up() {
+void botguy_up_emerg() {
+	botguy = 1;
+	int start = seconds();
 	motor(botguyMotor,100);
-	while(!digital(botguyClawIsUp)){}
+	while(!digital(botguyClawIsUp)||seconds()-start>2){}
 	freeze(botguyMotor);
 }
 
 void botguy_down() {
+	botguy = 0;
 	motor(botguyMotor,-40);
 	msleep(800);
 	freeze(botguyMotor);

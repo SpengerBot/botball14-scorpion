@@ -5,6 +5,7 @@ void tail_drive();
 void tail_down();
 void tail_botguy();
 void tail_up();
+void botguy_up_emerg();
 
 //servos
 #define tailServoLeft 1 		//moving up = higher values
@@ -101,7 +102,7 @@ void main() {
 	printf("Hooks are up\nBring Botguy!\n");
 	create_spin_angle_wait(rotate_speed, 50);
 	create_drive_distance_wait(-speed,-330);
-	botguy_up();
+	botguy_up_emerg();
 	create_drive_distance_wait(-speed,-180);
 	create_drive_distance_wait(speed,100);
 	motor(botguyMotor,-50);
@@ -117,6 +118,12 @@ void botguy_up() {
 	freeze(botguyMotor);
 }
 
+void botguy_up_emerg() {
+	int start = seconds();
+	motor(botguyMotor,100);
+	while(!digital(botguyClawIsUp)||seconds()-start>2){}
+	freeze(botguyMotor);
+}
 
 void botguy_down() {
 	motor(botguyMotor,-40);
