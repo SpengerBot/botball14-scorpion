@@ -71,7 +71,7 @@ void main() {
 	set_a_button_text("");
 	set_b_button_text("");
 	set_c_button_text("");
-	wait_for_light(lightSensor);
+	wait_for_light_save(lightSensor);
 	shut_down_in(100);
 	tail_drive();
 	botguy_up();
