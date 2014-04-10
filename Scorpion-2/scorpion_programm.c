@@ -100,7 +100,7 @@ void main() {
 	create_drive_distance_wait(speed,300);
 	tail_up();
 	printf("Hooks are up\nBring Botguy!\n");
-	create_spin_angle_wait(rotate_speed, 50);
+	create_spin_angle_wait(rotate_speed, 45);
 	create_drive_distance_wait(-speed,-330);
 	botguy_up_emerg();
 	create_drive_distance_wait(-speed,-180);
