@@ -79,7 +79,7 @@ void main() {
 	create_drive_distance_wait(-speed, -450);
 	create_spin_angle_wait(rotate_speed,-79);
 	create_drive_distance_wait(-speed, -225);
-	msleep(200);
+	msleep(400);
 	botguy_down();
 	create_drive_distance_wait(-speed, -120);
 	printf("I have got the cube!\n");
