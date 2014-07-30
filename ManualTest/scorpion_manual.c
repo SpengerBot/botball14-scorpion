@@ -61,7 +61,7 @@ void main() {
 	set_servo_position(botguyClaw,botguyClawClosed);
 	enable_servos();
 	printf("botguy_up_emerg();\n");
-	botguy_up_emerg();
+	//botguy_up_emerg();
 	display_clear();
 	printf("Ready!\n");
 	while(!side_button()) {
