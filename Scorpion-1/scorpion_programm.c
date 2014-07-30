@@ -89,7 +89,7 @@ void main() {
 	create_spin_angle_wait(rotate_speed,27);
 	printf("Get Botguy\n");
 	set_servo_position(botguyClaw,botguyClawOpen);
-	create_drive_distance_wait(-speed, -100);
+	create_drive_distance_wait(-speed, -110);
 	msleep(400);
 	set_servo_position(botguyClaw,botguyClawClosed);
 	printf("I have got the BotGuy!\n"); 
@@ -101,7 +101,7 @@ void main() {
 	tail_up();
 	printf("Hooks are up\nBring Botguy!\n");
 	create_spin_angle_wait(rotate_speed, 47);
-	create_drive_distance_wait(-speed,-330);
+	create_drive_distance_wait(-speed,-335);
 	botguy_up_emerg();
 	create_drive_distance_wait(-speed,-210);
 	create_drive_distance_wait(speed,100);
