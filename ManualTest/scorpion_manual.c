@@ -1,10 +1,11 @@
-void botguy_up_emerg();
+void botguy_up();
 void botguy_down();
 void tail_load();
 void tail_drive();
 void tail_down();
 void tail_botguy();
 void tail_up();
+void botguy_up_emerg();
 
 //servos
 #define tailServoLeft 1 		//moving up = higher values
@@ -49,6 +50,7 @@ int botguy;
 void main() {
 	//create_connect();
 	//create_full();
+	printf("Start!\n");
 	set_c_button_text("Tail Load");
 	set_a_button_text("Tail Down");
 	set_b_button_text("Tail Up");
@@ -58,7 +60,10 @@ void main() {
 	extra_buttons_show();
 	set_servo_position(botguyClaw,botguyClawClosed);
 	enable_servos();
+	printf("botguy_up_emerg();\n");
 	botguy_up_emerg();
+	display_clear();
+	printf("Ready!\n");
 	while(!side_button()) {
 		if(a_button()) {
 			tail_down();
@@ -94,6 +99,12 @@ void main() {
 			msleep(500);
 		}
 	}
+}
+
+void botguy_up() {
+	motor(botguyMotor,100);
+	while(!digital(botguyClawIsUp)){}
+	freeze(botguyMotor);
 }
 
 void botguy_up_emerg() {
@@ -155,7 +166,7 @@ void tail_up() {
 	set_servo_position(tailServoRight, tailServoRightUp);
 	msleep(600);
 	freeze(tailMotor);
-	create_drive_distance_wait(-100,-250);
+	//create_drive_distance_wait(-100,-250);
 }
 
 void tail_botguy(){
