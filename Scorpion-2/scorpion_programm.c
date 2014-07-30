@@ -112,16 +112,16 @@ void main() {
 	create_disconnect();
 }
 
-void botguy_up() {
-	motor(botguyMotor,100);
-	while(!digital(botguyClawIsUp)){}
-	freeze(botguyMotor);
-}
-
 void botguy_up_emerg() {
 	int start = seconds();
 	motor(botguyMotor,100);
 	while(!digital(botguyClawIsUp)||seconds()-start>2){}
+	freeze(botguyMotor);
+}
+
+void botguy_up() {
+	motor(botguyMotor,100);
+	while(!digital(botguyClawIsUp)){}
 	freeze(botguyMotor);
 }
 

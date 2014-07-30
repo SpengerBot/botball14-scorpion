@@ -125,7 +125,6 @@ void botguy_up() {
 	freeze(botguyMotor);
 }
 
-
 void botguy_down() {
 	motor(botguyMotor,-40);
 	msleep(800);
