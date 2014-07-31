@@ -103,13 +103,16 @@ void main() {
 	while(seconds()<start+get_drive_distance_duration(speed, 300)) {
 		if(get_create_lbump()||get_create_rbump()) {
 			danger = 1;
-			printf("DANGER!!");
+			printf("DANGER!!\n");
 		}
 	}
 	if(danger) {
 		create_drive_distance(speed, 100);
+		tail_up();
+		create_stop(); //stopping because hooks are up with more force
+	} else {
+		tail_up();
 	}
-	tail_up();
 	printf("Hooks are up\nBring Botguy!\n");
 	create_spin_angle_wait(rotate_speed, 47);
 	create_drive_distance_wait(-speed,-335);
