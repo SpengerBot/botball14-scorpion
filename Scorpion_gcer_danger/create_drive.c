@@ -48,13 +48,20 @@ void create_drive_distance(int speed, int dist) {
 */
 void create_drive_distance_wait(int speed, int dist) {  //dist in mm, speed in mm/s   invertiert fuer create roboter
 	create_drive_distance(speed, dist);
-	msleep(get_drive_distance_duration(speed, dist));
+	msleep(create_get_drive_distance_duration(speed, dist));
 	/*double d = dist;
 	double s = speed;
 	msleep((int)(d/s*1000.0));		//calculate the estimated duration*/
 }
-
-int get_drive_distance_duration(int speed, int dist) {
+/**
+* Author: Alexander Halbarth
+* Function: Returns the time the create will take to drive for a specific Distance
+* @return Time in Milliseconds
+* Arguments:
+*   - speed: The Speed in mm/s
+*   - dist: The Distance in mm the Create should driv
+*/
+int create_get_drive_distance_duration(int speed, int dist) {
 	double d = dist;
 	double s = speed;
 	return (int)(d/s*1000.0);		//calculate the estimated duration
@@ -101,16 +108,20 @@ void create_spin_angle(int speed, int angle) {
 */
 void create_spin_angle_wait(int speed, int angle) {
 	create_spin_angle(speed, angle);
-	msleep(get_spin_angle_duration(speed, angle));
-	/*if(angle*speed < 0) {			 //Correction of the angle
-		angle = angle * -1;
-	}
-	double a = angle;
-	double s = speed;
-	msleep((int)(2268.9280275*a/s)); //calculate the estimated duration (d*pi*angle/360/speed)*/
+	msleep(create_get_spin_angle_duration(speed, angle));
 }
 
-int get_spin_angle_duration(int speed, int angle) {
+/**
+* Author: Alexander Halbarth
+* Function: Returns the time the create will take to rotate to a specific angle.
+* @return Time in Milliseconds
+* Arguments:
+*   - speed: The Speed in mm/s
+*   - angle: The angle to which the Create should rotate
+*       - positive Value means turning right
+*       - negative Value means turning left
+*/
+int create_get_spin_angle_duration(int speed, int angle) {
 	if(angle*speed < 0) {			 //Correction of the angle
 		angle = angle * -1;
 	}
